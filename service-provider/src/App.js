@@ -1,12 +1,17 @@
 import React from 'react';
-import LandingPage from './components/LandingPage.jsx'
+import { Provider } from 'react-redux';
+
+import LandingContainer from './container/LandingContainer';
+import store from './store';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <LandingPage />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <LandingContainer />
+      </div>
+    </Provider>
   );
 }
 

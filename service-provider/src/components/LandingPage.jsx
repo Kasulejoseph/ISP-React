@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ispIcon from '../assets/ispImage.png'
-import ISPList from '../components/ISPList'
+// import LandingContainer from '../container/LandingContainer'
 import './LandingPage.scss'
-class LandingPage extends Component {
+export class LandingPage extends Component {
     render() {
         return (
           <div>
@@ -25,15 +25,6 @@ class LandingPage extends Component {
               </div>
             </div>
           </div>
-          </div>
-          <div class="row">
-            <div class="col s8">
-            <ISPList />
-            </div>
-
-            <div class="col s4">
-            <ISPList />
-            </div>
           </div>
           </div>
         )
