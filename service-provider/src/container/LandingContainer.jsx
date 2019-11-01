@@ -9,13 +9,17 @@ class LandingContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ispProvider: []
+            ispProvider: [],
+            hideIsp: {display: 'none'}
         }
     }
     componentDidMount() {
         this.props.ispAction()
     }
     showIsp = (id) => {
+        this.setState({
+            hideIsp: {display: 'block'}
+        })
         this.props.getIspAction(id)
     }
     render() {
@@ -24,7 +28,12 @@ class LandingContainer extends Component {
             return (
                 <div>
                     <LandingPage />
-                    <ISPSection data={data} showIsp={this.showIsp} singleIsp={this.props.singleList} />
+                    <ISPSection 
+                    data={data}
+                    showIsp={this.showIsp}
+                    singleIsp={this.props.singleList}
+                    hideIsp= {this.state.hideIsp}
+                    />
                 </div>
             )
         }
@@ -36,9 +45,7 @@ class LandingContainer extends Component {
     }
 }
 
-export const mapStateToProps = state => {
-    console.log('000000', state.isp);
-    
+export const mapStateToProps = state => {    
     return {
         data: state.isp.responseData.data,
         singleList:  state.isp.singleList.data
