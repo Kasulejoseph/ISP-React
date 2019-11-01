@@ -17,7 +17,6 @@ class LandingContainer extends Component {
     }
     showIsp = (id) => {
         this.props.getIspAction(id)
-        console.log('id===>', this.props);
     }
     render() {
         const { data } = this.props
@@ -25,7 +24,7 @@ class LandingContainer extends Component {
             return (
                 <div>
                     <LandingPage />
-                    <ISPSection data={data} />
+                    <ISPSection data={data} showIsp={this.showIsp} singleIsp={this.props.singleList} />
                 </div>
             )
         }
@@ -38,8 +37,11 @@ class LandingContainer extends Component {
 }
 
 export const mapStateToProps = state => {
+    console.log('000000', state.isp);
+    
     return {
         data: state.isp.responseData.data,
+        singleList:  state.isp.singleList.data
     };
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import { SingleIsp } from '../components/SingleIsp'
 import { ISPList } from '../components/ISPList'
 
-export const ISPSection = ({ data, showIsp }) => {
+export const ISPSection = ({ data, showIsp, singleIsp }) => {
     return (
         <div className="row">
             <div className="col m8 s8">
@@ -11,7 +11,7 @@ export const ISPSection = ({ data, showIsp }) => {
                 })}
             </div>
             <div className="col s4 single-isp">
-                <SingleIsp />
+                <SingleIsp singleIsp ={singleIsp} />
             </div>
         </div>
     )

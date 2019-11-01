@@ -1,10 +1,11 @@
 import React from "react";
 import defaultImage from '../assets/default-image.jpg'
-export const SingleIsp = () => {
+export const SingleIsp = (singleIspData) => {
+    console.log('----', singleIspData.singleIsp);
+    
     return (
         <div className="">
             <div className="">
-                {/* <h6 className="header">Horizontal Card</h6> */}
                 <div className="card horizontal">
                     <div className="card-image">
                         <img src={defaultImage} height="180px" alt="isp avatar" />
@@ -12,10 +13,10 @@ export const SingleIsp = () => {
                     <div className="card-stacked">
                         <div className="card-content isp-spec">
                             <ul class="collapsible p-0 mt-0">
-                                <div class="collapsible-header"><i class="material-icons">wifi</i>Max. speed</div>
-                                <div class="collapsible-header"><i class="material-icons">local_phone</i>099909 0 9</div>
-                                <div class="collapsible-header"><i class="material-icons">email</i>me@gmail.com</div>
-                                <div class="collapsible-header"><i class="material-icons">attach_money</i>Min. Plan</div>
+                                <div class="collapsible-header"><i class="material-icons">wifi</i>Max. speed: {singleIspData.singleIsp ? singleIspData.singleIsp.max_speed: 'mps'}</div>
+                                <div class="collapsible-header"><i class="material-icons">local_phone</i>{singleIspData.singleIsp ? singleIspData.singleIsp.contact_no: '+250'}</div>
+                                <div class="collapsible-header"><i class="material-icons">email</i>{singleIspData.singleIsp ? singleIspData.singleIsp.email: 'me@gmail.com'}</div>
+                                <div class="collapsible-header"><i class="material-icons">attach_money</i>{singleIspData.singleIsp ? singleIspData.singleIsp.lowest_price: '$100'}</div>
                             </ul>
                         </div>
                     </div>
