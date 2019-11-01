@@ -1,13 +1,13 @@
-import { TODO, ISP } from '../actions/type'
+import {ISP, SINGLEISP } from '../actions/type'
 
 const initialSate = {
-    todo: [],
-    responseData: []
+    responseData: [],
+    singleList: []
 }
 export default (state=initialSate, action) => {
     switch (action.type) {
-        case TODO:
-            return {...state, todo: action.payload } 
+        case SINGLEISP:
+            return {...state, singleList: action.payload } 
         case ISP:
             return {...state, responseData: action.payload }   
         default:
