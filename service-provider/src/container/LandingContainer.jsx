@@ -11,7 +11,7 @@ class LandingContainer extends Component {
     this.state = {
       ispProvider: [],
       hideIsp: { display: 'none' },
-      rating: { value: 2 },
+      rating: { value: 2 }
     };
   }
 
@@ -19,42 +19,43 @@ class LandingContainer extends Component {
     this.props.ispAction();
   }
 
-    onChangeRating = (value) => this.setState({ rating: value })
-
-    showSingleIsp = (id) => {
-      this.props.getIspAction(id).then(() => {
-        this.setState({
-          rating: { value: this.props.singleList.rating },
-        });
-      });
+  onChangeRating = (value) => this.setState({ rating: value })
+  onChangeSort = (value) => this.props.ispAction(undefined, {sort: value})
+  showSingleIsp = (id) => {
+    this.props.getIspAction(id).then(() => {
       this.setState({
-        hideIsp: { display: 'block' },
+        rating: { value: this.props.singleList.rating },
       });
-    }
+    });
+    this.setState({
+      hideIsp: { display: 'block' },
+    });
+  }
 
-    render() {
-      const { data } = this.props;
-      if (data) {
-        return (
-          <div>
-            <LandingPage />
-            <ISPSection
-              data={data}
-              showIsp={this.showSingleIsp}
-              singleIsp={this.props.singleList}
-              hideIsp={this.state.hideIsp}
-              onChangeRating={this.onChangeRating}
-              ratingValue={this.state.rating}
-            />
-          </div>
-        );
-      }
+  render() {
+    const { data } = this.props;    
+    if (data) {
       return (
-        <div className="progress">
-          <div className="indeterminate" />
+        <div>
+          <LandingPage />
+          <ISPSection
+            data={data}
+            showIsp={this.showSingleIsp}
+            singleIsp={this.props.singleList}
+            hideIsp={this.state.hideIsp}
+            onChangeRating={this.onChangeRating}
+            ratingValue={this.state.rating}
+            onChangeSort={this.onChangeSort}
+          />
         </div>
       );
     }
+    return (
+      <div className="progress">
+        <div className="indeterminate" />
+      </div>
+    );
+  }
 }
 
 export const mapStateToProps = (state) => ({
