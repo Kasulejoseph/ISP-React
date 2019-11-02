@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { ISP, DB_URL, ERROR } from './type'
+import { ISP, DB_URL, ERROR, SINGLEISP } from './type'
 
 export const ispAction = (payload) => {
     return async function(dispatch) {
@@ -11,6 +11,26 @@ export const ispAction = (payload) => {
             }) 
             dispatch({
                 type: ISP,
+                payload: response.data
+            })
+        } catch (error) {
+            dispatch({
+                type: ERROR,
+                payload: error
+            })
+        }
+    }
+}
+
+export const getIspAction = (id) => {
+    return async function(dispatch) {
+        try {
+            const response = await axios({
+                url: DB_URL + id,
+            }) 
+            
+            dispatch({
+                type: SINGLEISP ,
                 payload: response.data
             })
         } catch (error) {
