@@ -1,7 +1,7 @@
 import React from "react";
 import defaultImage from '../assets/default-image.jpg'
-export const SingleIsp = (singleIspData) => {
-    
+import { Rating } from '../components/Rating'
+export const SingleIsp = (singleIspData) => {    
     return (
         <div className="">
             <div className="">
@@ -22,7 +22,7 @@ export const SingleIsp = (singleIspData) => {
                 </div>
             </div>
             <div className="text-justify">
-                Ratings: ******
+                Ratings: <Rating onChangeRating={singleIspData.onChangeRating} ratingValue={singleIspData.ratingValue}/>
             </div>
                 <div className="text-justify">
                     <div className="card-panel teal">
