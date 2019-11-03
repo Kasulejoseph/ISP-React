@@ -3,6 +3,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+install dependancies with: `yarn`
+
  ### cd `service-provider`
 
 ### `yarn start`
