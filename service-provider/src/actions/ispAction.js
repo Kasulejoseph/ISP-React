@@ -4,10 +4,11 @@ import {
   ISP, DB_URL, ERROR, SINGLEISP,
 } from './type';
 
-export const ispAction = (payload) => async function (dispatch) {
+export const ispAction = (payload, param) => async function (dispatch) {  
+  const DB_URL_To_Use = param ? DB_URL + `?sort=${param.sort}` : DB_URL
   try {
     const response = await axios({
-      url: DB_URL,
+      url: DB_URL_To_Use,
       data: payload,
     });
     dispatch({
