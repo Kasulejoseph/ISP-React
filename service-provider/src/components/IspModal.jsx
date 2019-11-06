@@ -59,7 +59,7 @@ const ISPModal = ({ thisModal, state, handleChange, handleSubmit }) => {
                                 </div>
                             </div> */}
                             </div>
-                            <input className="btn waves-effect waves-light" type="submit" name="action">
+                            <input className="btn waves-effect waves-light modal-close" id="form-button" type="submit" name="action">
                             </input>
                         </form>
                     </div>

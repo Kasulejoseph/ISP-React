@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addIspAction } from '../actions/ispAction';
 import ISPModal from '../components/ISPModal'
 import M from 'materialize-css'
 
-export class Modal extends Component {
+class Modal extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: 'rer',
+            name: '',
             contact: '',
             price: '',
             email: '',
@@ -32,8 +34,20 @@ export class Modal extends Component {
     }
     handleSubmit(e) {
         e.preventDefault()
-
-        console.log(this.state);
+        const formData ={
+            name: this.state.name,
+            lowest_price: this.state.price,
+            rating: 2.0,
+            max_speed: this.state.speed,
+            description: this.state.description,
+            contact_no: this.state.contact,
+            email: this.state.email,
+            image: 'https://',
+            url: this.state.url
+        }
+        console.log('before', this.props);
+        
+        this.props.addIspAction(formData)
     }
     handleChange(e) {
         this.setState({
@@ -48,4 +62,10 @@ export class Modal extends Component {
         );
     }
 }
-export default Modal;
+export const mapStateToProps = (state) => ({
+    resp: state.isp.createResponseData.data,
+  });
+
+export default connect(
+    mapStateToProps,
+    { addIspAction })(Modal);

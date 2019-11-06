@@ -41,11 +41,17 @@ export const getIspAction = (id) => async function (dispatch) {
   }
 };
 
-export const addIspAction = () => async function (dispatch) {
+export const addIspAction = (data) => async function (dispatch) {
+  console.log('--->', data);
+  
   try {
     const response = await axios({
       url: DB_URL,
+      method: 'POST',
+      data
     });
+    console.log(response);
+    
     dispatch({
       type: CREARTEISP,
       payload: response.data,

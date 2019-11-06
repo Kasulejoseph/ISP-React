@@ -12,7 +12,7 @@ export default (state = initialSate, action) => {
     case ISP:
       return { ...state, responseData: action.payload };
     case CREARTEISP:
-      return { ...state.responseData, createResponseData: action.payload };
+      return { ...state, createResponseData: action.payload };
     default:
       return state;
   }
