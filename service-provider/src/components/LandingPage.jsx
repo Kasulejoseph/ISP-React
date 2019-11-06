@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ispIcon from '../assets/ispImage.png';
+import Modal from './IspModal'
 import './LandingPage.scss';
 
-export class LandingPage extends Component {
-  render() {
-    return (
+export const LandingPage = () => (
       <div>
         <div className="row">
           <div className="col s12 m12">
@@ -20,6 +19,7 @@ export class LandingPage extends Component {
 - Searching made easy!
                     {' '}
                   </div>
+                  <Modal />
                   <div className="col s4 push-s2 col-item" style={{ marginTop: '15px' }}>
                     <span style={{ border: '1px solid', padding: '10px' }}>
                       TOtal ISP: 09 |  API Hits: 786!
@@ -31,8 +31,6 @@ export class LandingPage extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+)
 
 export default LandingPage;
