@@ -15,7 +15,7 @@ const ISPModal = ({ thisModal, state, handleChange, handleSubmit }) => {
                         <form className="col s12" onSubmit={handleSubmit}>
                             <div className="row">
                                 <div className="input-field col s6">
-                                    <i className="material-icons prefix">account_circle</i>
+                                    <i className="material-icons prefix">home</i>
                                     <input id="icon_prefix" type="text" name="name" className="validate" value={state.name} onChange={handleChange} />
                                     <label htmlFor="icon_prefix">Name</label>
                                 </div>
