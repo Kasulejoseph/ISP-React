@@ -1,6 +1,6 @@
 import React from 'react';
 import ispIcon from '../assets/ispImage.png';
-import Modal from './IspModal'
+import Modal from '../container/IspModalContainer'
 import './LandingPage.scss';
 
 export const LandingPage = () => (
@@ -16,7 +16,7 @@ export const LandingPage = () => (
                   <div className="col s6 col-item" style={{ marginTop: '5px', fontSize: '20px' }}>
                     <span style={{ fontSize: '30px' }}>ISP HackerEarth.</span>
                     {' '}
-- Searching made easy!
+                      - Searching made easy!
                     {' '}
                   </div>
                   <Modal />
