@@ -11,7 +11,11 @@ class LandingContainer extends Component {
     this.state = {
       ispProvider: [],
       hideIsp: { display: 'none' },
-      rating: { value: 2 }
+      rating: { value: 2 },
+      pager: {
+        nextPage: '',
+        previousPage: ''
+      }
     };
   }
 
