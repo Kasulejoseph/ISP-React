@@ -1,6 +1,8 @@
 
-.col-item {
+.col-item2 {
     width: 0px;
+    display: -webkit-inline-box;
+    text-align: -webkit-center;
 }
 .collection .collection-item.avatar{
     display: flex;
@@ -29,4 +31,8 @@
     padding: 15px !important;
     margin-left: 10px !important;
     display: flex !important;
+}
+
+.modal-container {
+    margin-right: 480px;
 }

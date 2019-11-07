@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  ISP, DB_URL, ERROR, SINGLEISP,
+  ISP, DB_URL, ERROR, SINGLEISP, CREARTEISP
 } from './type';
 
 export const ispAction = (payload, param) => async function (dispatch) {  
@@ -31,6 +31,29 @@ export const getIspAction = (id) => async function (dispatch) {
 
     dispatch({
       type: SINGLEISP,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error,
+    });
+  }
+};
+
+export const addIspAction = (data) => async function (dispatch) {
+  console.log('--->', data);
+  
+  try {
+    const response = await axios({
+      url: DB_URL,
+      method: 'POST',
+      data
+    });
+    console.log(response);
+    
+    dispatch({
+      type: CREARTEISP,
       payload: response.data,
     });
   } catch (error) {
