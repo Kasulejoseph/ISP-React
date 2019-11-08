@@ -5,7 +5,7 @@ import { ISPList } from './ISPList';
 import { IspSort } from './IspSort'
 
 export const ISPSection = ({
-  data, showIsp, singleIsp, hideIsp, onChangeRating, ratingValue, onChangeSort
+  data, showIsp, singleIsp, hideIsp, onChangeRating, ratingValue, onChangeSort, handlePagination, isPaginate
 }) => (
   <div>
   <div className="row">
@@ -17,7 +17,7 @@ export const ISPSection = ({
     </div>
   </div> 
   <div>
-    <IspSort onChangeSort={onChangeSort}/>
+    <IspSort onChangeSort={onChangeSort} handlePagination={handlePagination} isPaginate={isPaginate}/>
     </div>
   </div>
 );

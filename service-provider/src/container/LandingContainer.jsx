@@ -14,15 +14,47 @@ class LandingContainer extends Component {
       rating: { value: 2 },
       pager: {
         nextPage: '',
-        previousPage: ''
+        previousPage: '',
+        count: 0
+      },
+      isPaginate: {
+        next: 'active',
+        prev: 'disabled'
       }
     };
   }
 
   componentDidMount() {
-    this.props.ispAction();
+    this.props.ispAction('sort=3&limit=4&skip=0');        
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    prevState.pager = nextProps.meta
+    return prevState
+  }
+  handlePagination = (value) => {    
+    if(value === 'next') {
+      this.setState({
+        isPaginate: {
+          next: 'disabled',
+          prev: 'active'
+        }
+      })
+      const next = this.state.pager.next ? this.state.pager.next.split('?')[1] : null    
+      this.props.ispAction(next)
+    }
+    if(value === 'previous') {
+      this.setState({
+        isPaginate: {
+          next: 'active',
+          prev: 'disabled'
+        }
+      })
+      const previous = this.state.pager.previous ? this.state.pager.previous.split('?')[1] : null
+      this.props.ispAction(previous)
+    }
+
+  };
   onChangeRating = (value) => this.setState({ rating: value })
   onChangeSort = (value) => this.props.ispAction(undefined, {sort: value})
   showSingleIsp = (id) => {
@@ -37,7 +69,7 @@ class LandingContainer extends Component {
   }
 
   render() {
-    const { data } = this.props;    
+    const { data } = this.props;        
     if (data) {
       return (
         <div>
@@ -50,6 +82,8 @@ class LandingContainer extends Component {
             onChangeRating={this.onChangeRating}
             ratingValue={this.state.rating}
             onChangeSort={this.onChangeSort}
+            handlePagination={this.handlePagination}
+            isPaginate ={this.state.isPaginate}
           />
         </div>
       );
@@ -64,6 +98,7 @@ class LandingContainer extends Component {
 
 export const mapStateToProps = (state) => ({
   data: state.isp.responseData.data,
+  meta: state.isp.responseData.meta,
   singleList: state.isp.singleList.data,
 });
 
