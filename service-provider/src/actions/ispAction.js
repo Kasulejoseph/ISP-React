@@ -1,15 +1,14 @@
 import axios from 'axios';
 
 import {
-  ISP, DB_URL, ERROR, SINGLEISP, CREARTEISP
+  ISP, DB_URL, ERROR, SINGLEISP, CREARTEISP,
 } from './type';
 
-export const ispAction = (payload, param) => async function (dispatch) {  
-  const DB_URL_To_Use = param ? DB_URL + `?sort=${param.sort}` : DB_URL
+export const ispAction = (payload, param) => async function (dispatch) {
+  const DB_URL_To_Use = param ? `${DB_URL}?sort=${param.sort}&limit=3&skip=0` : `${DB_URL}?${payload}`;
   try {
     const response = await axios({
       url: DB_URL_To_Use,
-      data: payload,
     });
     dispatch({
       type: ISP,
@@ -42,16 +41,12 @@ export const getIspAction = (id) => async function (dispatch) {
 };
 
 export const addIspAction = (data) => async function (dispatch) {
-  console.log('--->', data);
-  
   try {
     const response = await axios({
       url: DB_URL,
       method: 'POST',
-      data
+      data,
     });
-    console.log(response);
-    
     dispatch({
       type: CREARTEISP,
       payload: response.data,

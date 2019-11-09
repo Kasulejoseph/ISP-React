@@ -3,7 +3,7 @@ import { ISP, SINGLEISP, CREARTEISP } from '../actions/type';
 const initialSate = {
   responseData: [],
   singleList: [],
-  createResponseData: []
+  createResponseData: [],
 };
 export default (state = initialSate, action) => {
   switch (action.type) {

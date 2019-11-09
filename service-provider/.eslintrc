@@ -25,5 +25,8 @@
       },
       "globals": {
         "window": true
+      },
+      "rules": {
+          "no-shadow": "off"
       }
 }
