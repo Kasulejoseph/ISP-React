@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { myTodo } from '../actions/testActions';
 import { ispAction, getIspAction } from '../actions/ispAction';
@@ -15,52 +16,59 @@ class LandingContainer extends Component {
       pager: {
         nextPage: '',
         previousPage: '',
-        count: 0
+        count: 0,
       },
       isPaginate: {
         next: 'active',
-        prev: 'disabled'
-      }
+        prev: 'disabled',
+      },
     };
   }
 
   componentDidMount() {
-    this.props.ispAction('sort=3&limit=4&skip=0');        
+    const { ispAction } = this.props;
+    ispAction('sort=3&limit=4&skip=0');
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    prevState.pager = nextProps.meta
-    return prevState
+    prevState.pager = nextProps.meta;
+    return prevState;
   }
-  handlePagination = (value) => {    
-    if(value === 'next') {
+
+  handlePagination = (value) => {
+    const { pager } = this.state;
+    const { ispAction } = this.props;
+    if (value === 'next' && pager.next != null) {
       this.setState({
         isPaginate: {
           next: 'disabled',
-          prev: 'active'
-        }
-      })
-      const next = this.state.pager.next ? this.state.pager.next.split('?')[1] : null    
-      this.props.ispAction(next)
+          prev: 'active',
+        },
+      });
+      const next = pager.next.split('?')[1];
+      ispAction(next);
     }
-    if(value === 'previous') {
+    if (value === 'previous' && pager.previous != null) {
       this.setState({
         isPaginate: {
           next: 'active',
-          prev: 'disabled'
-        }
-      })
-      const previous = this.state.pager.previous ? this.state.pager.previous.split('?')[1] : null
-      this.props.ispAction(previous)
+          prev: 'disabled',
+        },
+      });
+      const previous = pager.previous.split('?')[1];
+      ispAction(previous);
     }
-
   };
+
   onChangeRating = (value) => this.setState({ rating: value })
-  onChangeSort = (value) => this.props.ispAction(undefined, {sort: value})
+
+  onChangeSort = (value) => this.props.ispAction(undefined, { sort: value })
+
   showSingleIsp = (id) => {
-    this.props.getIspAction(id).then(() => {
+    const { getIspAction, singleList } = this.props;
+    getIspAction(id).then(() => {
       this.setState({
-        rating: { value: this.props.singleList.rating },
+        rating: { value: singleList.rating },
       });
     });
     this.setState({
@@ -69,7 +77,8 @@ class LandingContainer extends Component {
   }
 
   render() {
-    const { data } = this.props;        
+    const { data, singleList } = this.props;
+    const { hideIsp, rating, isPaginate } = this.state;
     if (data) {
       return (
         <div>
@@ -77,13 +86,13 @@ class LandingContainer extends Component {
           <ISPSection
             data={data}
             showIsp={this.showSingleIsp}
-            singleIsp={this.props.singleList}
-            hideIsp={this.state.hideIsp}
+            singleIsp={singleList}
+            hideIsp={hideIsp}
             onChangeRating={this.onChangeRating}
-            ratingValue={this.state.rating}
+            ratingValue={rating}
             onChangeSort={this.onChangeSort}
             handlePagination={this.handlePagination}
-            isPaginate ={this.state.isPaginate}
+            isPaginate={isPaginate}
           />
         </div>
       );
@@ -95,6 +104,21 @@ class LandingContainer extends Component {
     );
   }
 }
+LandingContainer.propTypes = {
+  ispAction: PropTypes.func,
+  getIspAction: PropTypes.func,
+  singleList: PropTypes.shape({}),
+  data: PropTypes.shape([]),
+  meta: PropTypes.shape({}),
+};
+
+LandingContainer.defaultProps = {
+  ispAction: () => {},
+  getIspAction: () => {},
+  singleList: {},
+  data: [],
+  meta: {},
+};
 
 export const mapStateToProps = (state) => ({
   data: state.isp.responseData.data,

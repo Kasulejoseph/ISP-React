@@ -38,7 +38,10 @@ Max. speed:
     <div className="text-justify">
                 Ratings:
       {' '}
-      <Rating onChangeRating={singleIspData.onChangeRating} ratingValue={singleIspData.ratingValue} />
+      <Rating
+        onChangeRating={singleIspData.onChangeRating}
+        ratingValue={singleIspData.ratingValue}
+      />
     </div>
     <div className="text-justify">
       <div className="card-panel teal">
