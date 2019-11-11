@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { myTodo } from '../actions/testActions';
 import { ispAction, getIspAction } from '../actions/ispAction';
 import { ISPSection } from '../components/ISPSection';
 import { LandingPage } from '../components/LandingPage';
@@ -10,7 +9,6 @@ class LandingContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ispProvider: [],
       hideIsp: { display: 'none' },
       rating: { value: 2 },
       pager: {
@@ -128,5 +126,5 @@ export const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { myTodo, ispAction, getIspAction },
+  { ispAction, getIspAction },
 )(LandingContainer);
