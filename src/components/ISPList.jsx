@@ -8,7 +8,7 @@ export const ISPList = ({ isp, handleClick }) => (
       <img src={avatar} alt="" className="circle" />
       <div className="isp-detail">
         {isp.name}
-        <a href="!#" onClick={() => { handleClick(isp._id); }} className="secondary-content" pointer="true">
+        <a href="#!" onClick={() => { handleClick(isp._id); }} className="secondary-content" pointer="true">
           {isp.max_speed}
           <i className="material-icons">chevron_right</i>
         </a>
